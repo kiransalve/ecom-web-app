@@ -1,0 +1,16 @@
+.rating {
+  margin-top: 10px;
+}
+.rating_redo {
+  display: flex;
+  flex-direction: column;
+}
+.rating_redo_input {
+  font-size: 16px;
+}
+input {
+  margin-right: 10px;
+}
+.ratingLabel {
+  margin-left: 5px;
+}

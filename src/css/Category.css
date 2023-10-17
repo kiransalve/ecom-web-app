@@ -1,0 +1,10 @@
+.category_checkbox {
+  display: flex;
+  flex-direction: column;
+}
+.category_checkbox_input {
+    font-size: 15px;
+}
+.category_checkbox_input input{
+    margin-right: 8px;
+}

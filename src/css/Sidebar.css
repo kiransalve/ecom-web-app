@@ -1,0 +1,44 @@
+.sidebar {
+  width: 15rem;
+  overflow: auto;
+  font-size: 1.4rem;
+  border-right: 1px solid #d3d3d3;
+  padding: 1rem;
+  overflow-y: auto;
+}
+@media screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.sidebar_heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sidebar_heading h4 {
+  padding-top: 3px;
+}
+.clear {
+  font-size: 17px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.sidebar_price {
+  margin-top: 10px;
+}
+.sidebar_range_input {
+  width: 100%;
+}
+.sibar_range_values {
+  display: flex;
+  font-size: 15px;
+}
+.sidebar_range_value {
+  margin-right: 18px;
+}
+.sidebar_range_text {
+  font-size: 15px;
+}

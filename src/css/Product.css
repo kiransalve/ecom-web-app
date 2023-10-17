@@ -1,0 +1,12 @@
+.product {
+  display: grid;
+  grid-template-columns: 16rem auto;
+  height: calc(100vh - 80px);
+}
+
+@media screen and (max-width: 600px) {
+  .product {
+    grid-template-columns: auto;
+    display: flex;
+  }
+}

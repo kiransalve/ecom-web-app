@@ -1,0 +1,13 @@
+.sortby {
+  margin: 10px 0 10px 0;
+}
+.sortby_redo {
+  display: flex;
+  flex-direction: column;
+}
+.sortby_input {
+  font-size: 16px;
+}
+.sortByRadio {
+  margin-left: 5px;
+}
