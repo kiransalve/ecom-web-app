@@ -23,7 +23,7 @@ const ProductList = () => {
   const sortBy = useSelector((state) => state.product.sortBy);
   const searchBy = useSelector((state) => state.product.searchValue);
 
-  const firebaseURL = "https://ecom-e0153-default-rtdb.firebaseio.com/";
+  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const filteredProducts = productsList.filter((product) => {
     const isCategoryMatch =
       selectedCat.length === 1 || selectedCat.includes(product.category);
@@ -31,7 +31,6 @@ const ProductList = () => {
     const isRatingMatch = product.star + 1 > ratingValue;
     const title = product.title.toLowerCase() || product.category.toLowerCase();
     const isValue = searchBy ? title.includes(searchBy.toLowerCase()) : true;
-    console.log(isValue);
     return isCategoryMatch && isPriceMatch && isRatingMatch && isValue;
   });
   if (sortBy === "Low To High") {
@@ -47,9 +46,8 @@ const ProductList = () => {
 
   const addToCartHandlar = async (product) => {
     dispatch(addToCart(product));
-
+console.log(product)
     const cartArray = await fetchCartItem(email);
-    console.log(cartArray);
     const itemIndex = cartArray.findIndex(
       (item) => item.title === product.title
     );

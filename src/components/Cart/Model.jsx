@@ -15,7 +15,7 @@ const Model = ({
     pincode: "",
     phonenumber: "",
   });
-  const firebaseURL = "https://ecom-e0153-default-rtdb.firebaseio.com/";
+  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const user = useSelector((state) => state.auth.user);
   const email = user.email.replace(/[[@.]/g, "");
   console.log(email);

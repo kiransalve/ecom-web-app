@@ -19,7 +19,7 @@ import Model from "./Model";
 import { formatdate } from "./formatDate";
 
 const Cart = () => {
-  const firebaseURL = "https://ecom-e0153-default-rtdb.firebaseio.com/";
+  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const navigate = useNavigate();
   const cartItem = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
@@ -41,7 +41,7 @@ const Cart = () => {
     };
     calculateTotal();
   }, [totalAmt, cartItem]);
-
+console.log(cartItem)
   useEffect(() => {
     const fetchCartItems = async () => {
       const cartItems = await fetchCartItem(email);

@@ -1,5 +1,5 @@
 export const fetchCartItem = async (email) => {
-  const firebaseURL = "https://ecom-e0153-default-rtdb.firebaseio.com/";
+  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const response = await fetch(`${firebaseURL}cart${email}.json`, {
     method: "GET",
   });

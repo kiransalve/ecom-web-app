@@ -17,7 +17,7 @@ const Order = () => {
   };
   useEffect(() => {
     const fetchOrder = async (email) => {
-      const firebaseURL = "https://ecom-e0153-default-rtdb.firebaseio.com/";
+      const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
       const response = await fetch(`${firebaseURL}order${email}.json`, {
         method: "GET",
       });
@@ -42,13 +42,13 @@ const Order = () => {
             className="order-list"
           >
             <h5 className="order-date">Order Date: {order.orderDate}</h5>
-            <p className="order-amt">Total Amount: {order.totalAmt}</p>
+            <p className="order-amt">Total Amount: Rs. {order.totalAmt.toLocaleString()}</p>
             {expandedOrder === order.uid && (
               <ul className="order-item-container">
                 {order.items.map((item) => (
                   <li key={item.id} className="order-item-list">
                     <p className="order-item-title">Title: {item.title}</p>
-                    <p className="order-item-price">Price: {item.price}</p>
+                    <p className="order-item-price">Price: Rs. {item.price.toLocaleString()}</p>
                     <p className="order-item-quantity">
                       Quantity: {item.quantity}
                     </p>
