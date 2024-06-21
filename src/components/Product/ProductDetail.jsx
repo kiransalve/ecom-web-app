@@ -19,10 +19,9 @@ const ProductDetail = () => {
   const product = productsList.filter((product) => product.id === id);
   const user = useSelector((state) => state.auth.user);
   const email = user.email.replace(/[[@.]/g, "");
-const dispatch = useDispatch()
-const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
-const addToCartHandlar = async(product) => {
-console.log(product)
+  const dispatch = useDispatch();
+  const addToCartHandlar = async (product) => {
+    console.log(product);
     dispatch(addToCart(product));
 
     const cartArray = await fetchCartItem(email);
@@ -32,13 +31,16 @@ console.log(product)
     );
 
     if (itemIndex === -1) {
-      const response = await fetch(`${firebaseURL}cart${email}.json`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ ...product, quantity: 1 }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ ...product, quantity: 1 }),
+        }
+      );
       const data = await response.json();
     } else {
       // get whole cart
@@ -48,13 +50,16 @@ console.log(product)
         }
         return item;
       });
-      const response = fetch(`${firebaseURL}cart${email}.json`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(upadatedcart),
-      });
+      const response = fetch(
+        `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(upadatedcart),
+        }
+      );
       const data = await response.json();
     }
   };

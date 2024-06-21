@@ -15,7 +15,6 @@ const Model = ({
     pincode: "",
     phonenumber: "",
   });
-  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const user = useSelector((state) => state.auth.user);
   const email = user.email.replace(/[[@.]/g, "");
   console.log(email);
@@ -28,13 +27,16 @@ const Model = ({
   };
   const dispatch = useDispatch();
   const saveShippingDetails = async () => {
-    const response = await fetch(`${firebaseURL}shipping${email}.json`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(address),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_FirebaseURL}shipping${email}.json`,
+      {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(address),
+      }
+    );
     const data = await response.json();
     console.log(data);
   };

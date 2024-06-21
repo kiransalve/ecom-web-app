@@ -4,27 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { saveUser } from "../../store/authReducer";
 import { useDispatch } from "react-redux";
 
-
 const Signin = () => {
-const firebaseAuth = "AIzaSyDlcK8Kognh40O6xXIyPE_uOBAUIBlxNkE"
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({ email: "", password: "" });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
       const login = async () => {
         try {
           const response = await fetch(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebaseAuth}`
-    ,      {
+            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FirebaseAuthKey}`,
+            {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -36,7 +34,7 @@ const firebaseAuth = "AIzaSyDlcK8Kognh40O6xXIyPE_uOBAUIBlxNkE"
               }),
             }
           );
-          
+
           if (!response.ok) {
             console.log("Login Failed");
             return;
@@ -60,15 +58,14 @@ const firebaseAuth = "AIzaSyDlcK8Kognh40O6xXIyPE_uOBAUIBlxNkE"
       const login = async () => {
         try {
           const response = await fetch(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebaseAuth}`
-            ,
+            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FirebaseAuthKey}`,
             {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                email: "kiran@gmail.com",
+                email: "test1@gmail.com",
                 password: "123456",
                 returnSecureToken: true,
               }),

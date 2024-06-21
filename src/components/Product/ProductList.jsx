@@ -23,7 +23,6 @@ const ProductList = () => {
   const sortBy = useSelector((state) => state.product.sortBy);
   const searchBy = useSelector((state) => state.product.searchValue);
 
-  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const filteredProducts = productsList.filter((product) => {
     const isCategoryMatch =
       selectedCat.length === 1 || selectedCat.includes(product.category);
@@ -46,20 +45,23 @@ const ProductList = () => {
 
   const addToCartHandlar = async (product) => {
     dispatch(addToCart(product));
-console.log(product)
+    console.log(product);
     const cartArray = await fetchCartItem(email);
     const itemIndex = cartArray.findIndex(
       (item) => item.title === product.title
     );
 
     if (itemIndex === -1) {
-      const response = await fetch(`${firebaseURL}cart${email}.json`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ ...product, quantity: 1 }),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ ...product, quantity: 1 }),
+        }
+      );
       const data = await response.json();
     } else {
       // get whole cart
@@ -69,13 +71,16 @@ console.log(product)
         }
         return item;
       });
-      const response = fetch(`${firebaseURL}cart${email}.json`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(upadatedcart),
-      });
+      const response = fetch(
+        `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(upadatedcart),
+        }
+      );
       const data = await response.json();
     }
   };

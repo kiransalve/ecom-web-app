@@ -19,13 +19,11 @@ import Model from "./Model";
 import { formatdate } from "./formatDate";
 
 const Cart = () => {
-  const firebaseURL = "https://ecom-a3388-default-rtdb.firebaseio.com/";
   const navigate = useNavigate();
   const cartItem = useSelector((state) => state.cart);
   const user = useSelector((state) => state.auth.user);
   const email = user.email.replace(/[[@.]/g, "");
   const [loading, setLoading] = useState(true);
-
   const [totalAmt, setTotalAmt] = useState();
   const [details, setDetails] = useState({});
   const dispatch = useDispatch();
@@ -41,7 +39,7 @@ const Cart = () => {
     };
     calculateTotal();
   }, [totalAmt, cartItem]);
-console.log(cartItem)
+  console.log(cartItem);
   useEffect(() => {
     const fetchCartItems = async () => {
       const cartItems = await fetchCartItem(email);
@@ -60,13 +58,16 @@ console.log(cartItem)
     if (itemIndex !== -1) {
       if (cartArray[itemIndex].quantity > 0) {
         cartArray[itemIndex].quantity++;
-        const response = await fetch(`${firebaseURL}cart${email}.json`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(cartArray),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(cartArray),
+          }
+        );
         const data = await response.json();
       }
     }
@@ -80,24 +81,30 @@ console.log(cartItem)
       if (cartArray[itemIndex].quantity > 1) {
         // decrease the existing cart item in firebase
         cartArray[itemIndex].quantity--;
-        const response = await fetch(`${firebaseURL}cart${email}.json`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(cartArray),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(cartArray),
+          }
+        );
         const data = await response.json();
       } else {
         // remove the item from cart if quantity becomes 0
         cartArray.splice(itemIndex, 1);
-        const response = await fetch(`${firebaseURL}cart${email}.json`, {
-          method: "PUT",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify(cartArray),
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-type": "application/json",
+            },
+            body: JSON.stringify(cartArray),
+          }
+        );
         const data = await response.json();
       }
     }
@@ -110,13 +117,16 @@ console.log(cartItem)
     if (itemIndex !== -1) {
       // remove item from firebase
       cartArray.splice(itemIndex, 1);
-      const response = fetch(`${firebaseURL}cart${email}.json`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(cartArray),
-      });
+      const response = fetch(
+        `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(cartArray),
+        }
+      );
       const data = await response.json();
     }
   };
@@ -124,13 +134,16 @@ console.log(cartItem)
   const removeAllCartItem = async () => {
     const cartArray = [];
     dispatch(removeAllItem());
-    const response = await fetch(`${firebaseURL}cart${email}.json`, {
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(cartArray),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_FirebaseURL}cart${email}.json`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(cartArray),
+      }
+    );
     const data = await response.json();
   };
 
@@ -179,7 +192,7 @@ console.log(cartItem)
             orderDate: formatDate,
           };
           const orderResponse = await fetch(
-            `${firebaseURL}order${email}.json`,
+            `${process.env.REACT_APP_FirebaseURL}order${email}.json`,
             {
               method: "POST",
               headers: {

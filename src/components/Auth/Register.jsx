@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import "../../css/Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 const Register = () => {
-
-  const firebaseAuth = "AIzaSyDlcK8Kognh40O6xXIyPE_uOBAUIBlxNkE"
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -17,15 +15,15 @@ const Register = () => {
       [name]: value,
     });
   };
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-  const signup = async () => {
+      const signup = async () => {
         try {
           const response = await fetch(
-            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${firebaseAuth}`
-          ,  {
+            `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.REACT_APP_FirebaseAuthKey}`,
+            {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
