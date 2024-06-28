@@ -23,14 +23,13 @@
 
 .description {
   font-size: 20px;
-  color: #666;
+  color: chocolate;
   margin-top: 10px;
 }
 
 .shopnow {
   display: inline-block;
   padding: 10px 20px;
-  background-color: chocolate;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
@@ -40,7 +39,7 @@
 }
 
 .shopnow:hover {
-  background-color: #0056b3;
+  background-color: rgb(253, 167, 8);
   color: #fff;
 }
 
@@ -64,6 +63,7 @@
   text-align: center;
   font-size: 30px;
   margin: 20px 0;
+  color: chocolate;
 }
 .footer {
   background-color: chocolate;

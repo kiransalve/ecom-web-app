@@ -45,11 +45,12 @@
 }
 
 .order-item-list {
-  border: 1px solid #ccc;
-  background-color: #f9f9f9;
+  border: 1px solid chocolate;
+  background-color: chocolate;
   border-radius: 5px;
   padding: 10px;
   margin: 5px 0;
+  color: whitesmoke;
 }
 
 .order-item-title {
